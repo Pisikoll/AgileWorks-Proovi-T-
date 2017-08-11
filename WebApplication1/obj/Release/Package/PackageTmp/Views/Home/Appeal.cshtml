@@ -1,0 +1,65 @@
+﻿
+@model WebApplication1.Models.IAppeal
+@{
+    ViewBag.Title = "Sisesta pöördumine";
+}
+<style>
+    textarea,input{
+        max-width:unset;
+        width:100%;
+    }
+    td.lable{
+        padding-right:10px;
+    }
+    div.aeg{
+        margin: 0px;
+        width:100%;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+            format: 'DD.MM.YYYY HH:mm'
+        });
+    });
+</script>
+<div style="margin-top:20px;">
+    <h2>Lisa pöördumine</h2>
+    <div style="text-align:center">
+        <div style="display:inline-block;">
+            @using (Html.BeginForm()) {
+                <table style="text-align:left;">
+                    @Html.ValidationSummary(true)
+                    <tr>
+                        <td class="lable" >@Html.LabelFor(model => model.kirjeldus)</td>
+                        <td>
+                            @Html.TextAreaFor(m => m.kirjeldus, "")
+                            @Html.ValidationMessageFor(model => model.kirjeldus)
+                        </td>
+                    </tr>
+                    <tr> <td><div style="height:10px;width:100%;"> </div></td></tr>
+                    <tr>
+                        <td class="lable">@Html.LabelFor(model => model.lahendamiseT2htAeg)</td>
+                        <td>
+                            <div class='input-group date aeg' id='datetimepicker1'>
+                                @Html.TextBoxFor(m => m.lahendamiseT2htAeg, new { @autocomplete = "off" , @class = "form-control"})
+                                @Html.ValidationMessageFor(model => model.lahendamiseT2htAeg)
+                                <!--<input type='text' class="form-control" />-->
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <input type="submit" name="sisestus" value="Saada">
+            }
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+    
+</div>

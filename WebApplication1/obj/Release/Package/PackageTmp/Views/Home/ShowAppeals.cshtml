@@ -1,0 +1,52 @@
+﻿@model List<WebApplication1.Models.IAppeal>
+@{
+    ViewBag.Title = "Appeals";
+}
+<style>
+    a.ValmisNupp {
+        text-decoration: none;
+        color: black;
+    }
+    thead.header {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    td.header{
+        padding:10px;
+    }
+    td.rida{
+        font-size:15px;
+        padding:10px;
+    }
+    td.punaneRida {
+        background-color: Red;
+        color: white;
+    }
+</style>
+<div>
+    <h2>Pöördumised</h2>
+    <div style="text-align:center;">
+        <div style="display:inline-block;">
+            <table style="text-align:left;" border="1">
+                <thead class="header">
+                    <tr>
+                        <td class="header">Kirjeldus</td>
+                        <td class="header">Sisestamise aeg</td>
+                        <td class="header">Lahendamise tähtaeg</td>
+                        <td class="header"></td>
+                    </tr>
+                </thead>
+                @foreach (var appeal in Model) {
+                    string punaneClass = (appeal.lahendamiseT2htAeg - DateTime.Now).TotalHours < 1 ? "punaneRida" : "";
+                    <tr>
+                        <td class="rida @punaneClass"><p style=" white-space: pre; margin:0px;">@appeal.kirjeldus</p></td>
+                        <td class="rida @punaneClass">@appeal.sisestamisAeg.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td class="rida @punaneClass">@appeal.lahendamiseT2htAeg.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td class="rida" >@Html.ActionLink("Lahendatud", "EndAppeal", "Home",new { appeal.id}, new {@class = "ValmisNupp" })</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
