@@ -31,7 +31,7 @@ namespace WebApplication1
             Appeals.AadAppeal(p88rdumine);
 
             IAppeal aegumata = new Appeal() {
-                kirjeldus = "Uus pöördumine",
+                kirjeldus = "Aegumata",
                 lahendamiseT2htAeg = DateTime.Parse("5.06.2018 18:38:32")
             };
             Appeals.AadAppeal(aegumata);
